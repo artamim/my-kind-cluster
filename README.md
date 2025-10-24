@@ -1,8 +1,8 @@
-# Kubernetes Learning Journey: Kind Cluster with Deployments, Taints, Tolerations, Node Affinity, HPA, and NodePort Service
+# Kubernetes Learning Journey With Kind Cluster
 
 ## Overview
 
-This repository represents my evolving Kubernetes projects, starting with a local kind cluster to explore key concepts and grow my skills. As a learner, I’m diving deeper into Kubernetes with much more to master, and I’ll be adding new experiments and updates regularly. This is part of my Kubernetes learning journey, and I'm excited to share my progress!
+This project represents my evolving Kubernetes journey, starting with a local kind cluster to explore key concepts and grow my skills. As a learner, I’m diving deeper into Kubernetes with much more to master, and I’ll be adding new experiments and updates regularly. This is part of my Kubernetes learning journey, and I'm excited to share my progress!
 
 ## Project Highlights
 
