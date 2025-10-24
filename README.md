@@ -1,4 +1,4 @@
-# Kubernetes Learning Journey: Kind Cluster with Taints, Tolerations, Node Affinity, and HPA
+# Kubernetes Learning Journey: Kind Cluster with Deployments, Taints, Tolerations, Node Affinity, HPA, and NodePort Service
 
 ## Overview
 
@@ -11,6 +11,7 @@ This repository represents my evolving Kubernetes projects, starting with a loca
 - **Taints & Tolerations**: Ensured redis pods run only on a specific node using taints.
 - **Node Affinity**: Pinned redis pods to nodes with `diskType=ssd`.
 - **HPA**: Configured auto-scaling for the stress deployment when CPU exceeds 50%.
+- **NodePort Service**:  Created a NodePort service to expose the nginx deployment and accessed it via port forwarding, as there is no external IP for a worker node in a local kind cluster.
 
 ## Prerequisites
 
@@ -45,17 +46,24 @@ This repository represents my evolving Kubernetes projects, starting with a loca
 4. **Apply Deployments**:
 
    ```bash
-   kubectl apply -f nginx-deployment-definition.yaml
-   kubectl apply -f redis-deployment-definition.yaml
-   kubectl apply -f stress-deployment-definition.yaml
-   kubectl apply -f stress-deployment-hpa.yaml
+   kubectl create -f nginx-deployment-definition.yaml
+   kubectl create -f redis-deployment-definition.yaml
+   kubectl create -f stress-deployment-definition.yaml
+   kubectl create -f stress-deployment-hpa.yaml
+   ```
+5. **Create and Expose Service**:
+
+   ```bash
+   kubectl create -f service.nodeport.definition.yaml
+   kubectl port-forward service/my-nginx-service 8080:80
    ```
 
-5. **Verify Setup**:
+6. **Verify Setup**:
 
    - Check pod placement: `kubectl get pods -o wide`
    - Monitor CPU usage: `kubectl top pods`
    - Check HPA: `kubectl get hpa`
+   - Verify service: Open `http://localhost:8080` in a browser (requires port-forwarding).
 
 ## Files
 
@@ -63,6 +71,7 @@ This repository represents my evolving Kubernetes projects, starting with a loca
 - `redis-deployment-definition.yaml`: Deploys 3 redis pods (backend) with tolerations and node affinity for SSD nodes.
 - `stress-deployment-definition.yaml`: Deploys a stress-ng pod to simulate CPU load.
 - `stress-deployment-hpa.yaml`: Configures HPA to scale stress deployment (1-2 replicas) when CPU usage exceeds 50%.
+- `service.nodeport.definition.yaml`: Creates a NodePort service to expose the nginx deployment.
 
 ## Demo
 
@@ -70,11 +79,15 @@ This repository represents my evolving Kubernetes projects, starting with a loca
 - **HPA in Action**: The stress deployment scales to 2 replicas when CPU usage exceeds 50% (simulated via stress-ng).
 - **Screenshots**:
   - `kubectl get pods -o wide`: Shows all pod placements.
-    ![alt text](screenshots/image-2.png)
+    ![alt text](screenshots/image.png)
   - `kubectl get hpa`: Shows scaling events.
-    ![alt text](screenshots/image-3.png)
+    ![alt text](screenshots/image-2.png)
   - `kubectl top pods`: Shows pod resource consumption. The stress-pod is using almost 2 cores. That is why the hpa has created 2 pods.
+    ![alt text](screenshots/image-3.png)
+  - `kubectl port-forward`: output: Displays the port-forwarding process.
     ![alt text](screenshots/image-4.png)
+  - Nginx welcome page: Shows the nginx default page at `http://localhost:8080`.
+    ![alt text](screenshots/image-5.png)
 
 ## Future Plans
 
