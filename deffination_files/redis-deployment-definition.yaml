@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-redis
+  labels:
+    app: myapp
+    tier: backend
+spec:
+  selector:
+    matchLabels:
+      tier: backend
+  template:
+    metadata:
+      name: my-redis-pod
+      labels:
+        app: myapp
+        tier: backend
+    spec:
+      containers:
+        - name: my-redis-container
+          image: redis:alpine3.22
+      tolerations:
+        - key: "type"
+          operator: "Equal"
+          value: "Database"
+          effect: "NoSchedule"
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: "diskType"
+                    operator: "In"
+                    values:
+                      - "ssd"
+  replicas: 3

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stress-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stress
+  template:
+    metadata:
+      labels:
+        app: stress
+    spec:
+      containers:
+      - name: stress
+        image: polinux/stress-ng:latest
+        args: ["--cpu", "1", "--vm", "1", "--vm-bytes", "500M", "--timeout", "300s"]
+        resources:
+          limits:
+            cpu: "2"
+            memory: "600Mi"
+          requests:
+            cpu: "1"
+            memory: "400Mi"
