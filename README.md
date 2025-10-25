@@ -12,6 +12,7 @@ This project represents my evolving Kubernetes journey, starting with a local ki
 - **Node Affinity**: Pinned redis pods to nodes with `diskType=ssd`.
 - **HPA**: Configured auto-scaling for the stress deployment when CPU exceeds 50%.
 - **NodePort Service**:  Created a NodePort service to expose the nginx deployment and accessed it via port forwarding, as there is no external IP for a worker node in a local kind cluster.
+- **Prometheus Monitoring**:  Deployed a Prometheus DaemonSet to monitor nodes, configured with tolerations to run on tainted nodes.
 
 ## Prerequisites
 
@@ -51,6 +52,7 @@ This project represents my evolving Kubernetes journey, starting with a local ki
    kubectl create -f stress-deployment-definition.yaml
    kubectl create -f stress-deployment-hpa.yaml
    ```
+
 5. **Create and Expose Service**:
 
    ```bash
@@ -58,7 +60,13 @@ This project represents my evolving Kubernetes journey, starting with a local ki
    kubectl port-forward service/my-nginx-service 8080:80
    ```
 
-6. **Verify Setup**:
+6. **Deploy Prometheus Monitoring**:
+
+   ```bash
+   kubectl create -f prometheus-daemon-definition.yaml
+   ```
+
+7. **Verify Setup**:
 
    - Check pod placement: `kubectl get pods -o wide`
    - Monitor CPU usage: `kubectl top pods`
@@ -72,6 +80,7 @@ This project represents my evolving Kubernetes journey, starting with a local ki
 - `stress-deployment-definition.yaml`: Deploys a stress-ng pod to simulate CPU load.
 - `stress-deployment-hpa.yaml`: Configures HPA to scale stress deployment (1-2 replicas) when CPU usage exceeds 50%.
 - `service.nodeport.definition.yaml`: Creates a NodePort service to expose the nginx deployment.
+- `prometheus-daemon-definition.yaml`: Deploys a Prometheus DaemonSet to monitor nodes, with tolerations for tainted nodes.
 
 ## Demo
 
@@ -79,7 +88,7 @@ This project represents my evolving Kubernetes journey, starting with a local ki
 - **HPA in Action**: The stress deployment scales to 2 replicas when CPU usage exceeds 50% (simulated via stress-ng).
 - **Screenshots**:
   - `kubectl get pods -o wide`: Shows all pod placements.
-    ![alt text](screenshots/image.png)
+    ![alt text](screenshots/image-1.png)
   - `kubectl get hpa`: Shows scaling events.
     ![alt text](screenshots/image-2.png)
   - `kubectl top pods`: Shows pod resource consumption. The stress-pod is using almost 2 cores. That is why the hpa has created 2 pods.
