@@ -4,9 +4,7 @@
 
 This project represents my evolving Kubernetes journey, starting with a local kind cluster to explore key concepts and grow my skills. As a learner, I’m diving deeper into Kubernetes with much more to master, and I’ll be adding new experiments and updates regularly. This is part of my Kubernetes learning journey, and I'm excited to share my progress!
 
-<video src="/media/videos/1025.mp4" width="640" height="480" controls>
-  Your browser does not support the video tag.
-</video>
+https://github.com/artamim/my-kind-cluster/blob/post1/media/videos/1025.mp4
 
 ## Project Highlights
 
@@ -92,15 +90,15 @@ This project represents my evolving Kubernetes journey, starting with a local ki
 - **HPA in Action**: The stress deployment scales to 2 replicas when CPU usage exceeds 50% (simulated via stress-ng).
 - **Screenshots**:
   - `kubectl get pods -o wide`: Shows all pod placements.
-    ![alt text](media/screenshots/image-1.png)
+    ![alt text](screenshots/image-1.png)
   - `kubectl get hpa`: Shows scaling events.
-    ![alt text](media/screenshots/image-2.png)
+    ![alt text](screenshots/image-2.png)
   - `kubectl top pods`: Shows pod resource consumption. The stress-pod is using almost 2 cores. That is why the hpa has created 2 pods.
-    ![alt text](media/screenshots/image-3.png)
+    ![alt text](screenshots/image-3.png)
   - `kubectl port-forward`: output: Displays the port-forwarding process.
-    ![alt text](media/screenshots/image-4.png)
+    ![alt text](screenshots/image-4.png)
   - Nginx welcome page: Shows the nginx default page at `http://localhost:8080`.
-    ![alt text](media/screenshots/image-5.png)
+    ![alt text](screenshots/image-5.png)
 
 ## Future Plans
 
