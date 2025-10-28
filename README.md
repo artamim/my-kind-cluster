@@ -102,6 +102,6 @@ This project represents my evolving Kubernetes journey, starting with a local ki
 
 ## Future Plans
 
-- Dive into cluster maintenance (e.g., upgrading Kubernetes, handling node failures).
+- Dive into security (e.g., upgrading Kubernetes, handling node failures).
 
 #Kubernetes #DevOps #CloudNative #LearningTech #TechJourney
