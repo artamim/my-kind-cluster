@@ -4,7 +4,7 @@
 
 This project represents my evolving Kubernetes journey, starting with a local kind cluster to explore key concepts and grow my skills. As a learner, I’m diving deeper into Kubernetes with much more to master, and I’ll be adding new experiments and updates regularly. This is part of my Kubernetes learning journey, and I'm excited to share my progress!
 
-https://github.com/artamim/my-kind-cluster/blob/post1/media/videos/1025.mp4
+[https://github.com/artamim/my-kind-cluster/blob/post1/media/videos/1025.mp4](https://github.com/user-attachments/assets/1c50bf37-62c7-40d1-bd34-a36f144c66ff)
 
 ## Project Highlights
 
