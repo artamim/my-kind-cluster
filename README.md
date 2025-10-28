@@ -102,6 +102,6 @@ https://github.com/artamim/my-kind-cluster/blob/post1/media/videos/1025.mp4
 
 ## Future Plans
 
-- Dive into cluster maintenance (e.g., upgrading Kubernetes, handling node failures).
+- Dive into security (e.g., upgrading Kubernetes, handling node failures).
 
 #Kubernetes #DevOps #CloudNative #LearningTech #TechJourney
